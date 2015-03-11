@@ -1,0 +1,44 @@
+doctype html
+html
+  include head    
+
+  body
+    .wrapper
+      include header
+ 
+      .heading.section      
+        h2= page.metadata.title
+
+      .content
+          .section          
+            aside.blogbar.col.span_2_of_12
+              include sidebar
+
+            .blog.col.span_10_of_12
+              
+              != typogr(page.html).typogrify()
+          .fpadding.cf
+
+    footer.footer
+      .section
+        .col.span_6_of_12.auto
+          h5
+            | Sikuli Lab |  
+            a(href='http://www.colorado.edu') University of Colorado at Boulder
+          a(href='https://github.com/sikuli/craftml')
+            i.icon-github(style='font-size:200%;')
+    // /.footer
+    // Preloader
+    #preloader
+      #status &nbsp;
+    script(src='/js/jquery-2.1.0.min.js')
+    //- script(src='/js/jquery.plugins.js')
+    script(src='/js/custom.js')
+    script(src='/bundle.js')
+    script(src='/js/three.min.js')
+    script(src='/js/TrackballControls.js')
+    script(src='/js/STLLoader.js')|     
+    script(src='/js/stlviewer.js')
+    script(src='/js/ace/ace.js', type='text/javascript', charset='utf-8')
+    script(src='/react.js', type='text/jsx')
+    script(src='/app.js', type='text/jsx')

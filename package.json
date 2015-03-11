@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "async": "^0.9.0",
+    "highlight": "^0.2.3",
+    "highlight.js": "^8.4.0",
+    "js-yaml": "^3.2.7",
+    "lodash": "^3.5.0",
+    "marked": "^0.3.3",
+    "moment": "2.3.x",
+    "typogr": "0.5.x",
+    "underscore": "1.4.x"
+  },
+  "repository": "none"
+}
