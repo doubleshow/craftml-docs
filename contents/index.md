@@ -1,15 +1,14 @@
 ---
 template: index.jade
-title: Row
+title: Welcome
 ---
-
-Arrange cubes in a row.
 
 ```craftml
 <craft>
-    <row>
-        <cube></cube>
-        <cube></cube>
-    </row>
+    <stack>
+        Hello World
+        <scale x='10' y='5'>
+            <cube/>
+        </scale>
+    </stack>
 </craft>
-```
