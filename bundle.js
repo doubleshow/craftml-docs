@@ -54154,6 +54154,7 @@ if(typeof module !== 'undefined') {    // we are used as module in nodejs requir
       square: square,
       circle: circle,
       polygon: polygon,
+      vector_text: vector_text,
 
       //CSGs
       CSG: CSG,
