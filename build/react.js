@@ -15,7 +15,8 @@ var CraftEditor = React.createClass({
         editor.$blockScrolling = Infinity
         editor.setValue(contents, -1)
         editor.setTheme("ace/theme/tomorrow")
-        editor.getSession().setMode("ace/mode/xml")        
+        editor.getSession().setMode("ace/mode/html")  
+        editor.getSession().setUseWorker(false)     
         editor.commands.addCommand({
             name: "refresh",
             bindKey: {

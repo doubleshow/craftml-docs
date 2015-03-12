@@ -12,3 +12,4 @@ title: Welcome
         </scale>
     </stack>
 </craft>
+```
