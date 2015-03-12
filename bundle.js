@@ -45492,10 +45492,7 @@ for solid CAD anyway.
 
 */
 
-
-// (function(module){
-
-var debug = require('debug')('csg')
+(function(module){
 
 var _CSGDEBUG = false;
 
@@ -45706,7 +45703,6 @@ CSG.prototype = {
 	//          +-------+
 	//
 	subtract: function(csg) {
-		debug('subtract')
 		var csgs;
 		if(csg instanceof Array) {
 			csgs = csg;
@@ -45722,28 +45718,17 @@ CSG.prototype = {
 	},
 
 	subtractSub: function(csg, retesselate, canonicalize) {
-		debug('a <- CSG.Tree')
 		var a = new CSG.Tree(this.polygons);
-		debug('done')
-		debug('b <- CSG.Tree')
 		var b = new CSG.Tree(csg.polygons);
-		debug('done')
 		a.invert();
-		debug('invert')
 		a.clipTo(b);
-		debug('clipTo(b)')
 		b.clipTo(a, true);
-		debug('clipTo(a)')
 		a.addPolygons(b.allPolygons());
-		debug('addPolygons')
 		a.invert();
-		debug('invert')
 		var result = CSG.fromPolygons(a.allPolygons());
-		result.properties = this.properties._merge(csg.properties);		
+		result.properties = this.properties._merge(csg.properties);
 		if(retesselate) result = result.reTesselated();
-		debug('reTesselated')
 		if(canonicalize) result = result.canonicalized();
-		debug('canonicalized')
 		return result;
 	},
 
@@ -46371,9 +46356,7 @@ CSG.prototype = {
 					destpolygons = destpolygons.concat(retesselayedpolygons);
 				}
 			}
-			debug('fromPolygons begin')
 			var result = CSG.fromPolygons(destpolygons);
-			debug('fromPolygons end')
 			result.isRetesselated = true;
 			result = result.canonicalized();
 			//      result.isCanonicalized = true;
@@ -48766,13 +48749,10 @@ CSG.Tree.prototype = {
 
 	addPolygons: function(polygons) {
 		var _this = this;
-		debug('polygons map begin')
 		var polygontreenodes = polygons.map(function(p) {
 			return _this.polygonTree.addChild(p);
 		});
-		debug('polygons map end')
 		this.rootnode.addPolygonTreeNodes(polygontreenodes);
-		debug('addPolygonTreeNodes')
 	}
 };
 
@@ -48844,7 +48824,6 @@ CSG.Node.prototype = {
 	},
 
 	addPolygonTreeNodes: function(polygontreenodes) {
-		// debug('addPolygonTreeNodes')
 		if(polygontreenodes.length === 0) return;
 		var _this = this;
 		if(!this.plane) {
@@ -48879,14 +48858,10 @@ CSG.Node.prototype = {
 		});
 		if(frontnodes.length > 0) {
 			if(!this.front) this.front = new CSG.Node(this);
-			// debug('addPolygonTreeNodes|front:%d/%d', frontnodes.length, polygontreenodes.length)
 			this.front.addPolygonTreeNodes(frontnodes);
 		}
 		if(backnodes.length > 0) {
 			if(!this.back) this.back = new CSG.Node(this);
-			// debug('addPolygonTreeNodes|back:%d/%d', backnodes.length, polygontreenodes.length)
-			// some terminal condition check
-			// if (polygontreenodes.length > 2)
 			this.back.addPolygonTreeNodes(backnodes);
 		}
 	},
@@ -50780,7 +50755,6 @@ CAG.prototype = {
 	},
 
 	subtract: function(cag) {
-		debug('subtract')
 		var cags;
 		if(cag instanceof Array) {
 			cags = cag;
@@ -50790,15 +50764,11 @@ CAG.prototype = {
 		var r = this.toCSG(-1, 1);
 		cags.map(function(cag) {
 			r = r.subtractSub(cag.toCSG(-1, 1), false, false);
-		});		
+		});
 		r = r.reTesselated();
-		debug('reTesselated')
 		r = r.canonicalized();
-		debug('canonicalized')
 		r = CAG.fromFakeCSG(r);
-		debug('fromFakeCSG')
 		r = r.canonicalized();
-		debug('canonicalized')
 		return r;
 	},
 
@@ -51434,16 +51404,13 @@ CSG.Polygon2D = function(points) {
 CSG.Polygon2D.prototype = CAG.prototype;
 
 
-module.exports = {
-	CSG: CSG,
-	CAG: CAG
-}
-// module.CAG = CAG;
+module.CSG = CSG;
+module.CAG = CAG;
 // module.exports.CSG = CSG;
 // module.exports.CAG = CAG;
-// })(this); //module to export to
+})(this); //module to export to
 
-},{"debug":291}],289:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
 module.exports = require('./openscad')
 },{"./openscad":290}],290:[function(require,module,exports){
 // openscad.js, a few functions to simplify coding OpenSCAD-like
@@ -54176,28 +54143,42 @@ if(typeof module !== 'undefined') {    // we are used as module in nodejs requir
       // -- list all functions we export
       parseSTL: function(stl,fn) { return parseSTL(stl,fn); },
       parseAMF: function(amf,fn) { return parseAMF(amf,fn); },
-      cube: cube,
-      cylinder: cylinder,
-		torus: torus,
-      sphere: sphere,
+      //boolean operations
       group: group,
       union: union,
-      center: center,
-      translate: translate,
-      polygon: polygon,
-      scale: scale,
-      rotate: rotate,
-      torus: torus,     	
-      rotate_extrude: rotate_extrude,
-      linear_extrude: linear_extrude,
+      intersection: intersection,
+      difference: difference,
+
+      //CAGs
+      CAG: CAG,
       square: square,
       circle: circle,
-      difference: difference,
-      color: color,
-      rectangular_extrude: rectangular_extrude,
-      vector_text: vector_text,
+      polygon: polygon,
+
+      //CSGs
       CSG: CSG,
-      CAG: CAG
+      cube: cube,
+      cylinder: cylinder,
+      torus: torus,
+      sphere: sphere,
+      polyhedron: polyhedron,
+
+      //transformations
+      center: center,
+      translate: translate,
+      scale: scale,
+      rotate: rotate,
+
+   	//modifiers
+      rotate_extrude: rotate_extrude,
+      linear_extrude: linear_extrude,
+      rectangular_extrude: rectangular_extrude,
+      hull: hull,
+      chain_hull: chain_hull,
+      expand: expand,
+      contract: contract,
+      
+      color: color
    };
    //me = 'cli';
 }
