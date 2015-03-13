@@ -605,9 +605,9 @@ function loadSrc(context, src) {
         context.basePath = path.dirname(abspath)
     }
 
+
     return readPromise
         .then(function(contents) {
-
             return {
                 contents: contents,
                 context: context,
@@ -642,7 +642,7 @@ function parse(xml, context) {
             basePath: process.cwd()
         }
     }
-
+    
     return _parse(root, context)
         .then(function(ret) {
             return ret.length === 1 ? ret[0] : ret
@@ -726,6 +726,7 @@ function _parse(arg, context) {
             if (node.attribs.src) {
 
                 var src = node.attribs.src
+                // console.log(context)
                 return loader
                     .src(context, src)
                     .then(function(file) {
@@ -823,7 +824,7 @@ module.exports = promise
 },{"../parse":5,"./align.xml":6,"./column.xml":7,"./cube.xml":8,"./cylinder.xml":9,"./lineup.xml":11,"./row.xml":12,"./scale.xml":13,"./sphere.xml":14,"./stack.xml":15,"./text.xml":16,"bluebird":30,"fs":31,"lodash":296}],11:[function(require,module,exports){
 module.exports = '<craft>\n    <parameter name="axis" default="x" type="string"/>\n    <parameter name="spacing" default="0" type="int"/>\n    <content></content>\n    <script type="text/craftml">\n\n        function main(params, scope){\n\n            var a = params.axis\n\n            var contentSolids = scope.solids\n            \n            var tx = 0\n\n            console.log(params)\n\n            contentSolids.forEach(function(solid){\n\n                solid.layout.location[a] = tx\n                tx = tx + solid.layout.size[a] + params.spacing\n\n            })\n        }\n    </script>\n</craft>';
 },{}],12:[function(require,module,exports){
-module.exports = '<craft>\n    <group>\n        <content></content>\n    </group>\n    <script type="text/craftml">\n\n        function main(params, scope){\n\n            var contentSolids = scope.solids[0].children\n\n            var tx = 0\n            contentSolids.forEach(function(solid){\n\n                solid.layout.location.x = tx\n                tx = tx + solid.layout.size.x\n\n                // center along y\n                solid.layout.location.y = - solid.layout.size.y / 2\n\n                // place on x-y plane (z = 0)\n                solid.layout.location.z = 0\n\n            })\n\n            var ymin = _.min(contentSolids.map(function(c) {\n                return c.layout.location.y\n            }))\n\n            contentSolids.forEach(function(solid){\n                solid.layout.location.y = solid.layout.location.y - ymin                \n            })\n\n            scope.solids[0].fitToChildren()\n\n        }\n\n    </script>\n</craft>';
+module.exports = '<craft>\n    <parameter name="spacing" type="float" default="0"/>\n    <group>\n        <content></content>\n    </group>\n    <script type="text/craftml">\n\n        function main(params, scope){\n\n            var contentSolids = scope.solids[0].children\n\n            var tx = 0\n            contentSolids.forEach(function(solid){\n\n                solid.layout.location.x = tx\n                tx = tx + solid.layout.size.x + params.spacing\n\n                // center along y\n                solid.layout.location.y = - solid.layout.size.y / 2\n\n                // place on x-y plane (z = 0)\n                solid.layout.location.z = 0\n\n            })\n\n            var ymin = _.min(contentSolids.map(function(c) {\n                return c.layout.location.y\n            }))\n\n            contentSolids.forEach(function(solid){\n                solid.layout.location.y = solid.layout.location.y - ymin                \n            })\n\n            scope.solids[0].fitToChildren()\n\n        }\n\n    </script>\n</craft>';
 },{}],13:[function(require,module,exports){
 module.exports = '<craft>\n    <parameter name="x" default="1" type="float"/>\n    <parameter name="y" default="1" type="float"/>\n    <parameter name="z" default="1" type="float"/>   \n    <parameter name="factor" default="1" type="float"/>\n    <group>\n        <content></content>\n    </group>\n    <script type="text/craftml">\n\n        function main(params, scope) {\n            var grp = scope.solids[0]\n            var s\n            if (params.factor != 1) {\n                var f = params.factor\n                s = {\n                    x: f,\n                    y: f,\n                    z: f\n                }\n            } else {\n                var x = params.x\n                var y = params.y\n                var z = params.z\n                s = {\n                    x: x,\n                    y: y,\n                    z: z\n                }\n            }\n            grp.scale(s)\n        }\n    </script>\n</craft>';
 },{}],14:[function(require,module,exports){

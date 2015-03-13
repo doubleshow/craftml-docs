@@ -1,0 +1,7 @@
+<craft>
+    <craft name="f" src="cube.xml"/>
+    <stack>
+        <f/>
+        <f/>
+    </stack>
+</craft>

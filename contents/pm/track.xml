@@ -1,0 +1,17 @@
+<craft name="track">    
+    <parameter name="length" type="float" default="20"/> 
+    <scale x="{{length}}">
+        <group>
+            <lineup axis="z">
+                <cube xsize="1"/>
+                <cube ysize="10" zsize="2" xsize="1"/> 
+            </lineup>
+        </group>                    
+        <group>
+            <lineup axis="z">
+                <cube y="20" xsize="1"/>
+                <cube y="15" ysize="10" zsize="2" xsize="1"/>
+            </lineup>
+        </group>
+    </scale>
+</craft>

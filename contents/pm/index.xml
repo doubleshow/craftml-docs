@@ -1,0 +1,42 @@
+<craft>
+    <parameter name="windowBorder" type="float" default="5"/>
+    <parameter name="windowWidth" type="float" default="30"/>
+    <parameter name="windowHeight" type="float" default="40"/>
+    <parameter name="trackLength" type="float" default="20"/>
+    <parameter name="poleLevels" type="int" default="5"/>
+
+    <craft name="window" src="window.xml"/>
+    <craft name="pole" src="pole.xml"/>
+    <craft name="track" src="track.xml"/>
+
+    <craft name="platform">
+        <cube ysize="10" zsize="4"/>
+    </craft>
+
+    <craft name="person">
+        <stack>
+            <cube xsize="3"/>
+            <cube xsize="2" ysize="15"/>
+            <cube xsize="2" zsize="8"/>            
+        </stack>
+    </craft>
+        
+    <row spacing="5">
+
+        <track length={{trackLength}}></track>
+
+        <stack>
+            <person></person>
+            <platform></platform>
+        </stack>
+
+        <window width="{{windowWidth}}" height="{{windowHeight}}" border="{{windowBorder}}"/>
+
+        <track length="{{trackLength}}"></track>
+
+        <stack>
+            <pole levels="{{poleLevels}}"></pole>
+            <platform></platform>
+        </stack>
+    </row>
+</craft>

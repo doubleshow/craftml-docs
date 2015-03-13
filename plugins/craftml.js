@@ -87,6 +87,7 @@ parseMarkdownSync = function(content, markdown, baseUrl, options) {
       return code;
     }
   };
+  options.gfm = false;
   marked.setOptions(options);
   return marked(md2craftml(markdown));
 };

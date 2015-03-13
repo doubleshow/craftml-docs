@@ -57,7 +57,7 @@ parseMarkdownSync = (content, markdown, baseUrl, options) ->
         return hljs.highlight(lang, code).value
     catch error
       return code
-
+  options.gfm = false # turn off github markdown to stop auto url
   marked.setOptions options
   return marked md2craftml markdown
   # return "hello"
