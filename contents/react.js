@@ -163,7 +163,7 @@ var CraftApp = React.createClass({
                 return a*a;
             },
             first:function(a,callback){
-                console.log('is this done?')
+                console.log('worker initialized')
                 return callback(true)
             },            
             craft:function(input, callback){

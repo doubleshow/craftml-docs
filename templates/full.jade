@@ -4,19 +4,8 @@ html
   link(rel='stylesheet', href='css/full.css')
 
   body
-    != typogr(page.html).typogrify()    
+    a.logo(href="/craftml-docs") CraftML
+    div
+        != typogr(page.html).typogrify()    
 
-    script(src='js/jquery-2.1.0.min.js')    
-    block javascripts
-    //- script(src='/js/jquery.plugins.js')
-    script(src='js/custom.js')
-    script(src='bundle.js')
-    script(src='js/three.min.js')
-    script(src='js/TrackballControls.js')
-    script(src='js/STLLoader.js')|     
-    script(src='js/stlviewer.js')
-    script(src='js/ace/ace.js', type='text/javascript', charset='utf-8')
-    script(src="js/bonobo.js") 
-    script(src="js/worker.js")        
-    script(src='react.js', type='text/jsx')
-    script(src='app.js', type='text/jsx')
+    include scripts

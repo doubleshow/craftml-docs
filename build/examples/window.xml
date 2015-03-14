@@ -1,0 +1,18 @@
+<craft name="window">
+    <parameter name="width" type="float" default="10"/>
+    <parameter name="height" type="float" default="10"/>
+    <parameter name="border" type="float" default="2"/>
+    <script type="text/openjscad">
+
+function main(params){  
+
+    var a = cube()
+        .scale([params.width-params.border*2, params.height-params.border*2,2])
+        .translate([params.border,params.border,0])
+
+    var b = cube().scale([params.width, params.height,2])
+
+    return difference(b,a).rotateY(90)
+}
+    </script>
+</craft>    
