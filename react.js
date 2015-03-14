@@ -15,8 +15,8 @@ var CraftEditor = React.createClass({
         editor.$blockScrolling = Infinity
         editor.setValue(contents, -1)
         editor.setTheme("ace/theme/tomorrow")
-        editor.getSession().setMode("ace/mode/html")  
-        editor.getSession().setUseWorker(false)     
+        editor.getSession().setMode("ace/mode/html")
+        editor.getSession().setUseWorker(false)
         editor.commands.addCommand({
             name: "refresh",
             bindKey: {
@@ -44,12 +44,10 @@ var CraftEditor = React.createClass({
             background: 'rgba(240,240,240,0.15)'
         }
 
-        return (
-                <div className="editor"
-                    ref="editor"
-                    style={style}>
-                </div>
-        )
+    return (<div className = "editor"
+            ref = "editor"
+            style = {style}>
+           </div>)
     }
 })
 
@@ -85,41 +83,130 @@ var CraftViewer = React.createClass({
 
 var CraftApp = React.createClass({
 
-    refresh: function(){        
+    getInitialState: function() {
+        // naming it initialX clearly indicates that the only purpose
+        // of the passed down prop is to initialize something internally
+        return {
+            renderCommandText: 'Initializing ...',
+            exportCommandText: 'Export'
+        }
+    },
+
+    doRender: function() {
+        this.setState({renderCommandText: 'Rendering ...'})
+
         var code = this.refs.editor.getValue()
-        var viewer = this.refs.viewer
-
-        craft
-            .preview(code)
-            .then(function(r) {
-            
-                viewer.clear()
-                
-                var colors = ['blue', 'orange', 'yellow', 'green', 'fuchsia', 'red']
-
-                r.csgs.forEach(function(csg, index) {
-                    var stlstring = csg.toStlString()
-                    var csg = {
-                        color: colors[index % 6],
-                        stl: stlstring
-                    }
-                    
-                    viewer.add(csg)
-                })
+        var self = this
+        this.worker
+            .craft({code:code, mode:'preview'})
+            .then(function(results) {
+                self.didRender(results)
             })
     },
 
-    componentDidMount: function(){
-        this.refresh()
+    doExport: function(){
+        this.setState({exportCommandText: 'Exporting ...'})
+
+        var code = this.refs.editor.getValue()
+        var self = this
+        this.worker
+            .craft({code:code, mode:'export'})
+            .then(function(result) {
+                self.didExport(result)
+            })
     },
 
-    render: function() {   
+    didExport: function(result){
+        console.log('didExport',result)
+        this.setState({exportCommandText: 'Export'})
+
+        var blob = new Blob([result], {
+            type: 'application/stla'
+        })
+        var blobURL = URL.createObjectURL(blob)
+
+        var name = 'export.stl'
+        a.download = name
+        a.href = blobURL
+        a.click()
+        window.URL.revokeObjectURL(blobURL)
+    },
+
+    didRender: function(results) {
+        console.log('didRender',results)
+        var viewer = this.refs.viewer
+        viewer.clear()
+
+        var colors = ['blue', 'orange', 'yellow', 'green', 'fuchsia', 'red']
+        results.forEach(function(r, index) {
+            var stlstring = r.stl //toStlString()
+            var csg = {
+                color: colors[index % 6],
+                stl: stlstring
+            }
+
+            viewer.add(csg)
+        })
+
+        this.setState({renderCommandText: 'Render'})
+    },
+
+    componentDidMount: function() {
+        // this.refresh()
+
+
+        var worker = cw({
+            sum:function(a,callback){
+                callback(a[0]+a[1]);
+            },
+            square:function(a){
+                return a*a;
+            },
+            first:function(a,callback){
+                console.log('worker initialized')
+                return callback(true)
+            },            
+            craft:function(input, callback){
+                importScripts('bundle.js')
+                if (input.mode === 'export'){
+                    craft.build(input.code) 
+                      .then(function(r) {                        
+                        console.log('worker build done',r)
+                        
+                        var result = r.toStlString()
+                        callback(result)
+                    })
+                } else {
+                    craft.preview(input.code)
+                      .then(function(r) {                        
+                        console.log('worker preview done',r)
+                        
+                        var results = r.csgs.map(function(csg){
+                            return {
+                                stl: csg.toStlString()
+                            }
+                        })
+                        callback(results)
+                    })
+                }                    
+            }
+        })
+        
+        this.worker = worker
+        this.worker
+            .first('hi')
+            .then(this.doRender)
+
+        // this.doRender()
+    },
+
+    render: function() {
 
         var s1 = {
             top: 0,
             left: 0,
             width: '50%',
-            height: '100%'        
+            height: '100%'
         }
         var s2 = {
             position: 'absolute',
@@ -130,8 +217,8 @@ var CraftApp = React.createClass({
         }
         var b = {
             position: 'inherit',
-            margin: 5,            
-            right: 50
+            margin: 5,
+            right: 10
         }
 
         var r = {
@@ -144,18 +231,26 @@ var CraftApp = React.createClass({
             fontSize: '65%'
         }
 
+        // this.setState({renderCommandText: 'Craft'})
+
         return (          
           <div style={r}>
-            <div style={s2}>            
-              <div className="button" onClick={this.refresh} style={b}>
-                    <span>Craft</span>
-              </div>
+            <div style={s2}>                        
+              <div style={b}>
+                  <div className="button" onClick={this.doRender}>
+                        <span>{this.state.renderCommandText}</span>                        
+                        <br/><span className="button-caption">(shift-return)</span>
+                  </div>
+                  <div className="button" onClick={this.doExport}>
+                        <span>{this.state.exportCommandText}</span>
+                  </div>         
+              </div>     
                 <CraftViewer ref='viewer'/>
             </div>
             <div style={s1}>
                 <CraftEditor ref='editor' 
                     contents={this.props.contents}
-                    onRefreshHotkey={this.refresh}/>
+                    onRefreshHotkey={this.doRender}/>
             </div>            
           </div>
         )

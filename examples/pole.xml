@@ -1,0 +1,24 @@
+<craft name="pole">
+    <craft name="step">
+        <script type="text/openjscad">
+            function main(params){
+                var a = cube([2,4,4])
+                var b = cube([2,3,2]).translate([0,1,4])
+                return union(a,b)
+            }
+        </script>
+    </craft>
+
+    <parameter name="levels" type="int" default="5"/>
+    <stack>
+        <script type="text/craftml">
+            function main(params){
+                var r = ''
+                for (var i=0;i<params.levels;i++){
+                    r = r + '<step></step>'
+                }
+                return r
+            }
+        </script>
+    </stack>
+</craft>
