@@ -10,6 +10,11 @@ Arrange cubes in a row.
     <row>
         <cube></cube>
         <cube></cube>
+        <cube></cube>
+        <cube></cube>
+        <cube></cube>
+        <cube></cube>
+        <cube></cube>
     </row>
 </craft>
 ```

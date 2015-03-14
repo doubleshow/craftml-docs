@@ -35,7 +35,9 @@
         <track length="{{trackLength}}"></track>
 
         <stack>
-            <pole levels="{{poleLevels}}"></pole>
+            <rotate axis="y" degrees="30">
+                <pole levels="{{poleLevels}}"></pole>
+            </rotate>
             <platform></platform>
         </stack>
     </row>

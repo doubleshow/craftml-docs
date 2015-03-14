@@ -17,6 +17,11 @@ Last change:	06/12/14
   margin-bottom: 20px;
 }
 
+.craftml .source{
+  display: none;
+}
+
+.
 /* Syntax highlighting styles */
 /* ----------------------------------------------------------*/
 
@@ -267,7 +272,11 @@ blockquote{ border-left: 1px solid #E7543D; margin-left: 20px; margin-bottom: 30
 
 /* [ 3.2. Buttons ] */
 
-.button{ font-size: 16px; color:#e7543d; line-height: 46px; height: 46px; padding: 0 41px; border-radius: 5px; border: 2px solid #E7543D; background-color: transparent; text-decoration: none; text-align: center; cursor: pointer; display: inline-block; margin-top: 25px; font-family: 'Roboto Slab', serif; }
+.button{ font-size: 16px; color:#e7543d; padding: 5px 21px 5px 21px; margin: 3px; border-radius: 5px; border: 2px solid #E7543D; background-color: transparent; text-decoration: none; text-align: center; cursor: pointer; display: inline-block; margin-top: 25px; font-family: 'Roboto Slab', serif; }
+.button-caption{
+  font-size:12px;
+}
+
 .button:first-child{ margin-top: 0; }
 .button:hover,
 .button.hover{ background-color: #E7543D; color:#fff; }
@@ -559,7 +568,7 @@ ul.nav-portfolio li:before{ display: none; }
 [ 10. FOOTER ]
 -------------------------------------------------------------------*/
 
-.footer{ padding-top: 75px; padding-bottom: 65px; background-color: #F2F2F2; opacity: 1; position: relative; height: 213px; margin-top: -353px; }
+.footer{ padding-top: 75px; padding-bottom: 65px; background-color: #F2F2F2; opacity: 1; position: relative; height: 63px; margin-top: -203px; }
 .footer .section{ margin-bottom: 0; }
 .footer p{ font-size: 16px; line-height: 26px; color: #999999; padding-bottom: 53px; font-weight: 300; margin: auto; }
 .footer p:last-child{ padding-bottom: 0; }
@@ -639,12 +648,13 @@ form .button{ line-height: 1; }
 
 /* [ 13.1. Blog bar ] */
 
-.blogbar{ text-align: center; font-weight: 300; }
+.blogbar{ text-align: center; font-weight: 300; font-size:14px; margin-bottom: 6px; margin-top:0px;}
 .blogbar.fright{ margin-left: 4.5%; margin-right: 0; }
 .blogbar .ava{ margin-bottom: 12px; }
 .blogbar .ava img{ width: 110px; border-radius: 100%; }
-.blogbar h5{ margin-bottom: 27px; }
+.blogbar h5{ margin-bottom: 6px;}
 .blogbar h5 a{ color:#000; }
+.blogbar li {line-height: 20px;}
 .blogbar h5 a:hover{ color:#e7543d; }
 .blogbar .date{ font-size: 17px; line-height: 32px; color:#999999; margin-bottom: 20px; }
 .blogbar .categories{ color:#999999; line-height: 32px; margin-bottom: 2px; }

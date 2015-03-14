@@ -9,9 +9,9 @@ module.exports = function(markdown){
 
         if (index % 2 && tok.match(/^craftml\n/)){
 
-            return '<div class="craftml">\n'
+            return '<div class="craftml"><div class="source">\n'
                 + _.escape(tok.replace(/^craftml\n/,''))
-                + '</div>'
+                + '</div></div>'
         } else{
 
             return tok
