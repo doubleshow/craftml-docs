@@ -5,7 +5,7 @@
     "owner": "Someone",
     "description": "Ramblings of an immor(t)al demigod"
   },
-  "baseUrl": "/craftml-docs/",
+  "baseUrl": "/",
   "plugins": [
     "./plugins/craftml.coffee"
   ],
