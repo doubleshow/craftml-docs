@@ -25,7 +25,7 @@
         </nav>
       </header>
       <div class="heading section">     
-        <h2>Sphere</h2>
+        <h2>Puzzle</h2>
       </div>
       <div class="content">
         <div class="section">         
@@ -57,13 +57,17 @@
               <li class="aligned right"><a href="script/d3.html">D3  </a></li>
             </ul>
           </aside>
-          <div class="blog col span_10_of_12"><p>Sphere</p>
+          <div class="blog col span_10_of_12"><p>Puzzle</p>
+<p><a href="https://github.com/qubick/craft-puzzle">https://github.com/qubick/craft-puzzle</a></p>
 <div class="craftml"><div class="source">
 &lt;craft&gt;
-    &lt;sphere radius=&quot;10&quot;&gt;&lt;/sphere&gt;
-&lt;/craft&gt;
-</div></div>
-
+    &lt;craft name=&quot;puzzle&quot; module=&quot;qubick/craft-puzzle&quot;/&gt;
+    &lt;row&gt;
+        &lt;puzzle side1=&quot;+triangle&quot; side3=&quot;+rectangle&quot; side4=&quot;+circle&quot;&gt;&lt;/puzzle&gt;
+        &lt;puzzle side1=&quot;+triangle&quot; side2=&quot;-circle&quot; side3=&quot;+circle&quot; side4=&quot;+rectangle&quot;&gt;&lt;/puzzle&gt;
+        &lt;puzzle side2=&quot;-rectangle&quot; side3=&quot;+triangle&quot; side4=&quot;+triangle&quot;&gt;&lt;/puzzle&gt;
+    &lt;/row&gt;
+&lt;/craft&gt;</div></div>
 
           </div>
         </div>

@@ -25,7 +25,7 @@
         </nav>
       </header>
       <div class="heading section">     
-        <h2>Sphere</h2>
+        <h2>Pyramid</h2>
       </div>
       <div class="content">
         <div class="section">         
@@ -57,13 +57,28 @@
               <li class="aligned right"><a href="script/d3.html">D3  </a></li>
             </ul>
           </aside>
-          <div class="blog col span_10_of_12"><p>Sphere</p>
+          <div class="blog col span_10_of_12"><p>Pyramid</p>
 <div class="craftml"><div class="source">
 &lt;craft&gt;
-    &lt;sphere radius=&quot;10&quot;&gt;&lt;/sphere&gt;
+    &lt;craft name=&quot;pyramid&quot;&gt;
+        &lt;parameter name=&quot;n&quot; default=&quot;1&quot; type=&quot;int&quot;/&gt;
+        &lt;scale factor=&quot;5&quot;&gt;
+            &lt;stack&gt;
+                &lt;script type=&quot;text/craftml&quot;&gt;
+                    function main(params){
+                        var xml = &#39;&#39;
+                        for (var i = 1; i &lt;= params.n; i++){
+                            xml = xml + &#39;&lt;cube xsize=&quot;&#39; + i + &#39;&quot; ysize=&quot;&#39; + i + &#39;&quot; zsize=&quot;1&quot;/&gt;&#39;
+                        }
+                        return xml
+                    }
+                &lt;/script&gt;
+            &lt;/stack&gt;
+        &lt;/scale&gt;
+    &lt;/craft&gt;
+    &lt;pyramid n=&quot;5&quot;/&gt;
 &lt;/craft&gt;
 </div></div>
-
 
           </div>
         </div>
