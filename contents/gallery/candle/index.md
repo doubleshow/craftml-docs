@@ -1,6 +1,7 @@
 ---
 template: index.jade
 title: Candle
+author: calebhsu
 ---
 
 Candle

@@ -1,6 +1,6 @@
 ---
-template: index.jade
-title: Module Gallery
+template: gallery.jade
+title: Gallery
 ---
 
 * [Spiral](spiral.html)

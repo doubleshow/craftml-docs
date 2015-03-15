@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    
+    ul.nav-portfolio
+        li
+          a.filter(data-filter='all')
+            | All
+            ins &nbsp;
+        li
+          a.filter(data-filter='.module')
+            | Module
+            ins &nbsp;
+        li
+          a.filter(data-filter='.math')
+            | Math
+            ins &nbsp;
+
+    .section.portfolio.works-container.row
+        each p, key in page.parent
+            if p['index.md'] && p['example.png']
+                - var image = p['example.png'].filename
+                - var url = p['index.md'].filename
+                //- - var s = url.replace('')
+                .work.mix(class='module')
+                    img(src=image, alt=image)
+                    //- .mask
+                    a.mask(href=url)
+                        div.name= key
+                        div.author= p['index.md'].metadata.author

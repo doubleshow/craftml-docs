@@ -1,6 +1,7 @@
 ---
 template: index.jade
 title: Spiral
+author: dria7226
 ---
 
 Spiral

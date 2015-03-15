@@ -11,12 +11,8 @@ html
 
       .content
           .section          
-            aside.blogbar.col.span_2_of_12
-              include sidebar
-
-            .blog.col.span_10_of_12
+            block content
               
-              != typogr(page.html).typogrify()
           .fpadding.cf
 
     footer.footer

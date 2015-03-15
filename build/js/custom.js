@@ -30,6 +30,9 @@
 
         // onLoad function
         $win.load(function(){
+
+            that.activate();            
+
             $('#status').fadeOut();
             // $('#preloader').delay(300).fadeOut(200, function() {
             $('#preloader').delay(0).fadeOut(0, function() {    
@@ -67,7 +70,8 @@
             this.heading = $('.heading');
             this.navPortfolio = $('.nav-portfolio');
             this.portfolio = $('.portfolio');
-            this.worksContainer = $('.works-container');
+            this.worksContainer = $('.works-container');     
+            // console.log(this.worksContainer.length)       
             this.num = $('[data-num]');
             this.map = $('#map');
 
@@ -183,7 +187,7 @@
             });
 
             // Mixup portfolio
-            if (instance.worksContainer.length === 1){
+            if (instance.worksContainer.length === 1){                
 
                 var hsh = window.location.hash.replace('#','.'),
                     worksNavArr = [],
@@ -201,7 +205,7 @@
 
                 if (hsh == '.all')
                     hsh = 'all';
-
+                // console.log(instance.worksContainer.mixItUp)
                 instance.worksContainer.mixItUp({
                     load: {
                         filter: hsh != '' ? hsh : 'all'

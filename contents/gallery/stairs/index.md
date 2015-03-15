@@ -1,6 +1,7 @@
 ---
 template: index.jade
 title: Stairs
+author: dria7226
 ---
 
 Stairs
