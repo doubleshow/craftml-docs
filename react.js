@@ -96,9 +96,14 @@ var CraftApp = React.createClass({
         this.setState({renderCommandText: 'Rendering ...'})
 
         var code = this.refs.editor.getValue()
-        var self = this
+        var self = this        
+        var context = {
+            basePath: window.location.href,
+            origin: window.location.origin
+        }
+
         this.worker
-            .craft({code:code, mode:'preview'})
+            .craft({code:code, mode:'preview', context: context})
             .then(function(results) {
                 self.didRender(results)
             })
@@ -154,7 +159,6 @@ var CraftApp = React.createClass({
     componentDidMount: function() {
         // this.refresh()
 
-
         var worker = cw({
             sum:function(a,callback){
                 callback(a[0]+a[1]);
@@ -166,10 +170,10 @@ var CraftApp = React.createClass({
                 console.log('worker initialized')
                 return callback(true)
             },            
-            craft:function(input, callback){
-                importScripts('bundle.js')
+            craft:function(input, callback){                
+                importScripts('bundle.js')                
                 if (input.mode === 'export'){
-                    craft.build(input.code) 
+                    craft.build(input.code, input.context) 
                       .then(function(r) {                        
                         console.log('worker build done',r)
                         
@@ -177,7 +181,8 @@ var CraftApp = React.createClass({
                         callback(result)
                     })
                 } else {
-                    craft.preview(input.code)
+                    craft
+                    .preview(input.code, input.context)
                       .then(function(r) {                        
                         console.log('worker preview done',r)
                         
@@ -186,7 +191,10 @@ var CraftApp = React.createClass({
                                 stl: csg.toStlString()
                             }
                         })
+                    
                         callback(results)
+                    }).catch(function(err){
+                        callback(err)
                     })
                 }                    
             }
@@ -196,8 +204,6 @@ var CraftApp = React.createClass({
         this.worker
             .first('hi')
             .then(this.doRender)
-
-        // this.doRender()
     },
 
     render: function() {
