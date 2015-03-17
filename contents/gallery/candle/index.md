@@ -9,6 +9,10 @@ Candle
 ```craftml
 <craft>
     <craft name="candle" module="calebhsu/craft-candle"/>
-    <candle></candle>
+    <row>
+        <candle height="15" size="2"></candle>
+        <candle width="15" height="10"></candle>
+        <candle></candle>
+    </row>
 </craft>
 ```
