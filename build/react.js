@@ -114,15 +114,20 @@ var CraftApp = React.createClass({
 
         var code = this.refs.editor.getValue()
         var self = this
+        var context = {
+            basePath: window.location.href,
+            origin: window.location.origin
+        }        
+
         this.worker
-            .craft({code:code, mode:'export'})
+            .craft({code:code, mode:'export', context: context})
             .then(function(result) {
                 self.didExport(result)
             })
     },
 
     didExport: function(result){
-        console.log('didExport',result)
+        //console.log('didExport',result)
         this.setState({exportCommandText: 'Export'})
 
         var blob = new Blob([result], {
