@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    
+    ul.nav-portfolio
+    
+    .section.portfolio.works-container.row
+        each p, key in page.parent
+            if p['index.md'] && p['figure.png']
+                - var image = p['figure.png'].filename
+                - var url = p['index.md'].filename
+                //- - var s = url.replace('')
+                .work.mix(class='module')
+                    img(src=image, alt=image)
+                    //- .mask
+                    a.mask(href=url)
+                        div.name= key
+                        div.author= p['index.md'].metadata.author

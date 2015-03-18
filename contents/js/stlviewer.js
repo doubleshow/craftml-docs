@@ -140,6 +140,7 @@ Viewer.prototype = {
             grid = new Grid(1, 0.05);
             //grid.material = new THREE.MeshBasicMaterial({transparent:true});
             grid.rotation.y = Math.PI / 2;
+            grid.rotation.z = Math.PI / 2;
             this.scene.add(grid);
 
             //z - xy
