@@ -1,7 +1,7 @@
 ---
 template: index.jade
 title: Bottle
-author: calebhsu
+author: Dragos Iarovoi
 ---
 
 Bottle
