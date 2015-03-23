@@ -7,6 +7,7 @@ module.exports = React.createClass({
 
     getInitialState: function() {
         return {
+            useWorker: this.props.useWorker,
             renderCommandText: 'Initializing ...',
             exportCommandText: 'Export'
         }
@@ -23,34 +24,10 @@ module.exports = React.createClass({
         }
 
         brcraft
-            .preview(code, context)
+            .preview(code, context, {useWorker: this.state.useWorker})
             .then(function(results){
                 self.didRender(results)
             })
-
-        // if (0){
-        //     console.log(craft.d)
-        //     craft
-        //         .preview(code, context)
-        //         .then(function(r){
-        //             console.log(r)
-        //             var results = r.csgs.map(function(csg){
-        //                     return {
-        //                         stl: csg.toStlString()
-        //                     }
-        //                 })
-        //             console.log(results)
-        //             self.didRender(results)
-        //         })
-
-        // }else{
-
-        //     // this.worker
-        //     //     .craft({code:code, mode:'preview', context: context})
-        //     //     .then(function(results) {
-        //     //         self.didRender(results)
-        //     //     })
-        // }
     },
 
     doExport: function(){
@@ -65,7 +42,7 @@ module.exports = React.createClass({
 
 
         brcraft
-            .build(code, context)
+            .build(code, context, {useWorker: this.state.useWorker})
             .then(function(result){
                 self.didExport(result)
             })
@@ -95,7 +72,7 @@ module.exports = React.createClass({
 
         var colors = ['blue', 'orange', 'yellow', 'green', 'fuchsia', 'red']
         results.forEach(function(r, index) {
-            var stlstring = r.stl //toStlString()
+            var stlstring = r.stl
             var csg = {
                 color: colors[index % 6],
                 stl: stlstring
@@ -145,8 +122,6 @@ module.exports = React.createClass({
         var a = {
             display: 'none'
         }
-
-        // this.setState({renderCommandText: 'Craft'})
 
         return (          
           <div style={r}>

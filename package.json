@@ -5,6 +5,7 @@
     "catiline": "^2.9.3",
     "highlight": "^0.2.3",
     "highlight.js": "^8.4.0",
+    "jade": "^1.9.2",
     "js-yaml": "^3.2.7",
     "lodash": "^3.5.0",
     "marked": "^0.3.3",
