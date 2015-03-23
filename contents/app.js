@@ -1,12 +1,4 @@
 $('.craftml').each(function(){
-    var contents = _.unescape($(this).find('.source')[0].innerHTML)
-
-    React.render(<CraftApp contents={contents}/>,
-       this
-    )
+    var contents = $(this).find('.source')[0].innerHTML
+    craft.edit(this, contents)
 })
-
-// http://stackoverflow.com/questions/19327749/javascript-blob-filename-without-link
-var a = document.createElement("a");
-document.body.appendChild(a);
-a.style = 'display: none';
