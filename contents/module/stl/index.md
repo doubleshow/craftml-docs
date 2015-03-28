@@ -10,8 +10,15 @@ STL
     <craft name="chair" stl="chair.stl"/>
     <craft name="pin" stl="https://raw.githubusercontent.com/sikuli/craftml/master/test/fixtures/pin.stl"/>
     <row>
-        <chair></chair>
-        <pin></pin>
+        <align y="50">
+            <chair></chair>
+            <scale z="0.8">
+                <pin></pin>
+            </scale>
+            <rotate axis="z" degrees="180">
+                <chair></chair>
+            </rotate>
+        </align>
     </row>
 </craft>
 ```

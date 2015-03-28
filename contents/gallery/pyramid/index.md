@@ -12,18 +12,23 @@ Pyramid
         <parameter name="n" default="1" type="int"/>
         <scale factor="5">
             <stack>
-                <script type="text/craftml">
-                    function main(params){
-                        var xml = ''
-                        for (var i = 1; i <= params.n; i++){
-                            xml = xml + '<cube xsize="' + i + '" ysize="' + i + '" zsize="1"/>'
+                <align x="50" y="50">
+                    <script type="text/craftml">
+                        function main(params){
+                            var xml = ''
+                            for (var i = 1; i <= params.n; i++){
+                                xml = xml + '<cube xsize="' + i + '" ysize="' + i + '" zsize="1"/>'
+                            }
+                            return xml
                         }
-                        return xml
-                    }
-                </script>
+                    </script>
+                </align>
             </stack>
         </scale>
     </craft>
-    <pyramid n="5"/>
+    <column>
+        <pyramid n="10"/>
+        <pyramid n="5"/>
+    </column>
 </craft>
 ```

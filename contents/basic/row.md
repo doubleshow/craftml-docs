@@ -5,21 +5,67 @@ title: Row
 
 Arrange elements into a row
 
-In this example, ten cubes are created and arranged in a row. By default, elements are centered with respect to `y` and lie flat on the ground plane (`z=0`).
+
+Five cubes of different sizes. They are all positioned at (0,0,0) and overlapping.
+```craftml
+<craft>
+    <scale factor="1"><cube></cube></scale>
+    <scale factor="2"><cube></cube></scale>
+    <scale factor="3"><cube></cube></scale>
+    <scale factor="4"><cube></cube></scale>
+</craft>
+```
+
+
+`<row>` arranges these five cubes in a row along the x-axis.
 
 ```craftml
 <craft>
     <row>
-        <cube></cube>
-        <cube></cube>
-        <cube></cube>
-        <cube></cube>
-        <cube ysize="20" zsize="10"></cube>
-        <cube ysize="40" zsize="20"></cube>
-        <cube></cube>
-        <cube></cube>
-        <cube></cube>
-        <cube></cube>
+        <scale factor="1"><cube></cube></scale>
+        <scale factor="2"><cube></cube></scale>
+        <scale factor="3"><cube></cube></scale>
+        <scale factor="4"><cube></cube></scale>
+    </row>
+</craft>
+```
+
+The `spacing` attribute can be used to add empty spaces between the cubes.
+
+
+```craftml
+<craft>
+    <row spacing="2">
+        <scale factor="1"><cube></cube></scale>
+        <scale factor="2"><cube></cube></scale>
+        <scale factor="3"><cube></cube></scale>
+        <scale factor="4"><cube></cube></scale>
+    </row>
+</craft>
+```
+
+The `spacing` attribute can be negative, which will cause the cubes to overlap.
+
+```craftml
+<craft>
+    <row spacing="-2">
+        <scale factor="1"><cube></cube></scale>
+        <scale factor="2"><cube></cube></scale>
+        <scale factor="3"><cube></cube></scale>
+        <scale factor="4"><cube></cube></scale>
+    </row>
+</craft>
+```
+
+A useful application of negative spacing is to connect objects with curved surfaces.
+
+```craftml
+<craft>
+    <row spacing="-2">
+        <scale factor="2"><sphere></sphere></scale>
+        <scale factor="2"><sphere></sphere></scale>
+        <scale factor="2"><sphere></sphere></scale>
+        <scale factor="2"><sphere></sphere></scale>
     </row>
 </craft>
 ```

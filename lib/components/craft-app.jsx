@@ -81,11 +81,26 @@ module.exports = React.createClass({
             viewer.add(csg)
         })
 
-        this.setState({renderCommandText: 'Render'})
+        // var editorHeight = this.refs.editor.getHeight()
+        this.setState({renderCommandText: 'Render'})//, editorHeight: editorHeight})        
+        // console.log(editorHeight)
+    },
+
+    handleHeightChange: function(height){
+        console.log('height:', height)
+        var h = Math.max(height, 200) + 0  // enforce min height
+        this.setState({editorHeight:h})
+        this.refs.viewer.setHeight(h)
     },
 
     componentDidMount: function() {        
         this.doRender()
+        var editorHeight = this.refs.editor.getHeight()
+        this.handleHeightChange(editorHeight)
+    },
+
+    componentDidUpdate: function(){
+        this.refs.viewer.refresh()
     },
 
     render: function() {
@@ -111,8 +126,12 @@ module.exports = React.createClass({
 
         var r = {
             position: 'relative',
-            height: '100%',
+            height: '300',//100%',
             border: '1px #999 solid'
+        }
+
+        if (this.state.editorHeight){
+            r.height = this.state.editorHeight
         }
 
         var n = {
@@ -141,6 +160,7 @@ module.exports = React.createClass({
             <div style={s1}>
                 <CraftEditor ref='editor'
                     contents={this.props.contents}
+                    onHeightChange={this.handleHeightChange}
                     onRefreshHotkey={this.doRender}/>
             </div>            
           </div>
