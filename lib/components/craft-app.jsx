@@ -86,11 +86,13 @@ module.exports = React.createClass({
         // console.log(editorHeight)
     },
 
-    handleHeightChange: function(height){
-        console.log('height:', height)
-        var h = Math.max(height, 200) + 0  // enforce min height
-        this.setState({editorHeight:h})
-        this.refs.viewer.setHeight(h)
+    handleHeightChange: function(height){                
+        if (this.props.autoResize){
+            // console.log('height:', height)
+            var h = Math.max(height, 200) + 0  // enforce min height
+            this.setState({editorHeight:h})
+            this.refs.viewer.setHeight(h)
+        }
     },
 
     componentDidMount: function() {        

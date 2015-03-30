@@ -201,11 +201,13 @@ module.exports = React.createClass({displayName: "exports",
         // console.log(editorHeight)
     },
 
-    handleHeightChange: function(height){
-        console.log('height:', height)
-        var h = Math.max(height, 200) + 0  // enforce min height
-        this.setState({editorHeight:h})
-        this.refs.viewer.setHeight(h)
+    handleHeightChange: function(height){                
+        if (this.props.autoResize){
+            // console.log('height:', height)
+            var h = Math.max(height, 200) + 0  // enforce min height
+            this.setState({editorHeight:h})
+            this.refs.viewer.setHeight(h)
+        }
     },
 
     componentDidMount: function() {        
@@ -961,7 +963,6 @@ THREE.TrackballControls = function ( object, domElement ) {
 			this.screen.top = box.top + window.pageYOffset - d.clientTop;
 			this.screen.width = box.width;
 			this.screen.height = box.height;
-
 		}
 
 	};
@@ -2534,7 +2535,7 @@ Viewer.prototype = {
         });
 
         this.controls.addEventListener('end', function() {
-            // turn off the animatation at the start of a trackball control event
+            // turn off the animatation at the end of a trackball control event
             self.animateOff();
         });
 
@@ -2569,7 +2570,8 @@ Viewer.prototype = {
     },
 
     onWindowResize: function() {
-        console.log("resized:" + this.container.id);
+        console.debug("viewer resized:", this.container.clientWidth, this.container.clientHeight);
+        this.controls.handleResize()
         this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
