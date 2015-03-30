@@ -6,7 +6,7 @@ title: Row
 Arrange elements into a row
 
 
-Five cubes of different sizes. They are all positioned at (0,0,0) and overlapping.
+There are four cubes of different sizes, all positioned at (0,0,0) and overlapping.
 ```craftml
 <craft>
     <scale factor="1"><cube></cube></scale>

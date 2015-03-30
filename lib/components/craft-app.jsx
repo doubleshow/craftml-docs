@@ -126,11 +126,11 @@ module.exports = React.createClass({
 
         var r = {
             position: 'relative',
-            height: '300',//100%',
+            height: '100%',
             border: '1px #999 solid'
         }
 
-        if (this.state.editorHeight){
+        if (this.state.editorHeight && this.props.autoResize){
             r.height = this.state.editorHeight
         }
 
@@ -161,6 +161,7 @@ module.exports = React.createClass({
                 <CraftEditor ref='editor'
                     contents={this.props.contents}
                     onHeightChange={this.handleHeightChange}
+                    autoResize={this.props.autoResize}
                     onRefreshHotkey={this.doRender}/>
             </div>            
           </div>

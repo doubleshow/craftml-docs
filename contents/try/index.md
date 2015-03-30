@@ -3,7 +3,7 @@ template: full.jade
 title: Try
 ---
 
-```craftml
+```craftml {autoResize:false}
 <craft>
     <craft name="pin" module="sikuli/craft-pin"/>
     <row>
