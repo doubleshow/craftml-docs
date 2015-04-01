@@ -43,9 +43,11 @@
             </ul>
             <h5 class="aligned left">Structure</h5>
             <ul>
+              <li class="aligned right"><a href="basic/position.html">Position  </a></li>
               <li class="aligned right"><a href="basic/row.html">Row</a></li>
               <li class="aligned right"><a href="basic/column.html">Column</a></li>
               <li class="aligned right"><a href="basic/stack.html">Stack</a></li>
+              <li class="aligned right"><a href="basic/align.html">Align</a></li>
               <li class="aligned right"><a href="basic/resize.html">Resize</a></li>
               <li class="aligned right"><a href="basic/scale.html">Scale</a></li>
               <li class="aligned right"><a href="basic/repeat.html">Repeat</a></li>
@@ -73,19 +75,24 @@
         &lt;parameter name=&quot;n&quot; default=&quot;1&quot; type=&quot;int&quot;/&gt;
         &lt;scale factor=&quot;5&quot;&gt;
             &lt;stack&gt;
-                &lt;script type=&quot;text/craftml&quot;&gt;
-                    function main(params){
-                        var xml = &#39;&#39;
-                        for (var i = 1; i &lt;= params.n; i++){
-                            xml = xml + &#39;&lt;cube xsize=&quot;&#39; + i + &#39;&quot; ysize=&quot;&#39; + i + &#39;&quot; zsize=&quot;1&quot;/&gt;&#39;
+                &lt;align x=&quot;50&quot; y=&quot;50&quot;&gt;
+                    &lt;script type=&quot;text/craftml&quot;&gt;
+                        function main(params){
+                            var xml = &#39;&#39;
+                            for (var i = 1; i &lt;= params.n; i++){
+                                xml = xml + &#39;&lt;cube xsize=&quot;&#39; + i + &#39;&quot; ysize=&quot;&#39; + i + &#39;&quot; zsize=&quot;1&quot;/&gt;&#39;
+                            }
+                            return xml
                         }
-                        return xml
-                    }
-                &lt;/script&gt;
+                    &lt;/script&gt;
+                &lt;/align&gt;
             &lt;/stack&gt;
         &lt;/scale&gt;
     &lt;/craft&gt;
-    &lt;pyramid n=&quot;5&quot;/&gt;
+    &lt;column&gt;
+        &lt;pyramid n=&quot;10&quot;/&gt;
+        &lt;pyramid n=&quot;5&quot;/&gt;
+    &lt;/column&gt;
 &lt;/craft&gt;
 </div></div>
 
