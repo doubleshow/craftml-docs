@@ -423,9 +423,9 @@ module.exports = '<craft name="column">\n    <parameter name="spacing" type="flo
 },{}],8:[function(require,module,exports){
 module.exports = '<craft>\n    <parameter name="x" default="0,0" type="string"/>\n    <parameter name="y" default="0,0" type="string"/>\n    <parameter name="z" default="0,0" type="string"/>\n    <group>\n        <group>\n            <content></content>\n        </group>\n    </group>\n    <script type="text/craftml">\n\n        function main(params, scope) {\n            var grp = scope.solids[0].children[0]\n            grp.fitToChildren()\n\n            // parse cropping parameter\n            grp.layout.crop = crop            \n            var f = function(v){\n                return v.split(\',\').map(Number)\n            }\n\n            var crop = {\n                x: f(params.x),\n                y: f(params.y),\n                z: f(params.z)\n            }\n            grp.layout.crop = crop\n         \n            // caculate the CSG to subtract from all nodes in <content></content>\n            var csg = calculateCSGtoCrop(grp)\n            grp.layout.crop.csg = csg\n\n            // caculate the new layout size and location after crop            \n            var size = grp.layout.size\n            var location = grp.layout.location\n\n            var dims = [\'x\', \'y\', \'z\']\n            var sides = [0, 1]\n            dims.forEach(function(dim) {\n\n                var min = Number(crop[dim][0]) / 100\n                var max = 1 - Number(crop[dim][1]) / 100\n\n                location[dim] = location[dim] + size[dim] * min\n                size[dim] = size[dim] * (max - min)\n\n            })\n\n            grp.layout.size = size\n            // provide an offset to the original so that after cropping,\n            // the remaining portion will be positioned correctly\n            grp.layout.location = {\n                x: -location.x,\n                y: -location.y,\n                z: -location.z\n            }\n\n            var outter = scope.solids[0]\n            outter.layout.size= _.clone(size)\n            outter.layout.location = {x:0, y:0, z:0}\n        }\n\n        function calculateCSGtoCrop(node){\n             var size = node.layout.size\n\n            // an array to collect things to subtract\n            var toSubtractList = []\n\n            var crop = node.layout.crop\n\n            var dims = [\'x\', \'y\', \'z\']\n            var sides = [0, 1]\n            dims.forEach(function(dim) {\n\n                sides.forEach(function(side) {\n\n                    var cropsize = size[dim] * Number(crop[dim][side]) / 100\n\n                    if (cropsize === 0) {\n                        return\n                    }\n\n                    var csize = {\n                        x: size.x,\n                        y: size.y,\n                        z: size.z\n                    }\n\n                    var ctran = {\n                        x: 0,\n                        y: 0,\n                        z: 0\n                    }\n\n                    csize[dim] = cropsize\n\n                    if (side === 1) {                     \n                        ctran[dim] = size[dim] - cropsize\n                    }\n\n                    var toSubtract = $$$.cube()\n                        .scale([csize.x, csize.y, csize.z])\n                        .translate([ctran.x, ctran.y, ctran.z])\n\n                    toSubtractList.push(toSubtract)\n                })\n            })\n            \n            var combined = $$$.union(toSubtractList)\n            return combined\n        }\n\n    </script>\n</craft>';
 },{}],9:[function(require,module,exports){
-module.exports = '<craft name="cube">\n    <parameter name="xsize" default="5" type="int"/>\n    <parameter name="ysize" default="5" type="int"/>\n    <parameter name="zsize" default="5" type="int"/>\n    <script type="text/craftml">\n        function main(params){\n            return cube([params.xsize,params.ysize,params.zsize])\n        }\n    </script>\n</craft>';
+module.exports = '<craft name="cube">\n    <parameter name="xsize" default="10" type="int"/>\n    <parameter name="ysize" default="10" type="int"/>\n    <parameter name="zsize" default="10" type="int"/>\n    <script type="text/craftml">\n        function main(params){\n            return cube([params.xsize,params.ysize,params.zsize])\n        }\n    </script>\n</craft>';
 },{}],10:[function(require,module,exports){
-module.exports = '<craft name="cylinder">\n    <parameter name="radius" default="2.5" type="float"/>\n    <parameter name="height" default="5" type="float"/>   \n    <parameter name="resolution" default="24" type="int"/>\n    <script type="text/craftml">\n        function main(params) {\n            return new CSG.cylinder({\n                radius: params.radius,\n                resolution: params.resolution,\n                start: [0, 0, 0],\n                end: [0, 0, params.height]\n            })\n        }\n    </script>\n</craft>';
+module.exports = '<craft name="cylinder">\n    <parameter name="radius" default="5" type="float"/>\n    <parameter name="height" default="10" type="float"/>   \n    <parameter name="resolution" default="24" type="int"/>\n    <script type="text/craftml">\n        function main(params) {\n            return new CSG.cylinder({\n                radius: params.radius,\n                resolution: params.resolution,\n                start: [0, 0, 0],\n                end: [0, 0, params.height]\n            })\n        }\n    </script>\n</craft>';
 },{}],11:[function(require,module,exports){
 module.exports = '<craft name="group">\n    <content></content>\n    <script type="text/craftml">\n        function main(params, scope) {\n            var solids = scope.solids\n\n            var grp = new Solid()\n            grp.children = _.flatten(solids)\n            grp.fitToChildren()\n            scope.solids = [grp]\n        }\n    </script>\n</craft>';
 },{}],12:[function(require,module,exports){
@@ -493,9 +493,9 @@ module.exports = '<craft name="row">\n    <parameter name="spacing" type="float"
 },{}],18:[function(require,module,exports){
 module.exports = '<craft name="scale">\n    <parameter name="x" default="1" type="float"/>\n    <parameter name="y" default="1" type="float"/>\n    <parameter name="z" default="1" type="float"/>   \n    <parameter name="factor" default="1" type="float"/>\n    <group>\n        <content></content>\n    </group>\n    <script type="text/craftml">\n\n        function main(params, scope) {\n            var grp = scope.solids[0]\n            var s\n            if (params.factor && params.factor != 1) {\n                var f = params.factor\n                s = {\n                    x: f,\n                    y: f,\n                    z: f\n                }\n            } else {\n                var x = params.x\n                var y = params.y\n                var z = params.z\n                s = {\n                    x: x,\n                    y: y,\n                    z: z\n                }\n            }\n            grp.scale(s)\n        }\n    </script>\n</craft>';
 },{}],19:[function(require,module,exports){
-module.exports = '<craft name="space">\n    <parameter name="xsize" default="5" type="int"/>\n    <parameter name="ysize" default="5" type="int"/>\n    <parameter name="zsize" default="5" type="int"/>\n    <script type="text/craftml">\n        function main(params){\n            return cube([params.xsize,params.ysize,params.zsize])\n        }\n    </script>\n    <script type="text/craftml">\n        function main(params, scope){            \n            delete scope.solids[0].csg             \n        }\n    </script>    \n</craft>';
+module.exports = '<craft name="space">\n    <parameter name="xsize" default="10" type="int"/>\n    <parameter name="ysize" default="10" type="int"/>\n    <parameter name="zsize" default="10" type="int"/>\n    <script type="text/craftml">\n        function main(params){\n            return cube([params.xsize,params.ysize,params.zsize])\n        }\n    </script>\n    <script type="text/craftml">\n        function main(params, scope){            \n            delete scope.solids[0].csg             \n        }\n    </script>    \n</craft>';
 },{}],20:[function(require,module,exports){
-module.exports = '<craft name="sphere">\n    <parameter name="radius" default="2.5" type="float"/>    \n    <parameter name="resolution" default="36" type="int"/>    \n    <script type="text/craftml">\n        function main(params){\n            return new CSG.sphere({radius: params.radius, resolution: params.resolution})\n        }\n    </script>\n</craft>';
+module.exports = '<craft name="sphere">\n    <parameter name="radius" default="5" type="float"/>    \n    <parameter name="resolution" default="36" type="int"/>    \n    <script type="text/craftml">\n        function main(params){\n            return new CSG.sphere({radius: params.radius, resolution: params.resolution, center: [params.radius, params.radius, params.radius]})\n        }\n    </script>\n</craft>';
 },{}],21:[function(require,module,exports){
 module.exports = '<craft name="stack">\n    <parameter name="spacing" type="float" default="0"/>\n    <group>\n        <content></content>\n    </group>\n    <script type="text/craftml">\n\n        function main(params, scope){\n\n            var contentSolids = scope.solids[0].children\n\n            var tz = 0\n            contentSolids.reverse().forEach(function(solid){\n                solid.translateTo({\n                    x: solid.layout.location.x,\n                    y: solid.layout.location.y,\n                    z: tz\n                })\n                tz = tz + solid.layout.size.z + params.spacing\n            })\n\n\n            // var tz = 0\n            // contentSolids.reverse().forEach(function(solid){\n\n            //     solid.layout.location.z = tz\n            //     tz = tz + solid.layout.size.z + params.spacing\n\n            //     // center along y\n            //     solid.layout.location.y = - solid.layout.size.y / 2\n\n            //     // center along x\n            //     solid.layout.location.x = - solid.layout.size.x / 2\n\n            // })\n\n            // var ymin = _.min(contentSolids.map(function(c) {\n            //     return c.layout.location.y\n            // }))\n\n            // var xmin = _.min(contentSolids.map(function(c) {\n            //     return c.layout.location.x\n            // }))            \n\n            // contentSolids.forEach(function(solid){\n            //     solid.layout.location.y = solid.layout.location.y - ymin\n            //     solid.layout.location.x = solid.layout.location.x - xmin\n            // })\n\n            scope.solids[0].fitToChildren()\n        }\n\n    </script>\n</craft>';
 },{}],22:[function(require,module,exports){
@@ -932,41 +932,20 @@ function _createSolidFromStlString(stlstring, src, element) {
         var maxDim = _.max([xs, ys, zs])
         var factor = targetDim / maxDim
 
-        // solid.layout.scale = {
-        //     x: factor,
-        //     y: factor,
-            // z: factor
-        // }
+        solid.translateTo({x:0,y:0,z:0})
+        
+        var p = new Solid()
+        p.tag = 'group'
+        p.children = [solid]
+        p.fitToChildren()
+        p.scale({x:factor,y:factor,z:factor})
 
-        // solid.layout.size = {
-        //     x: xs * factor,
-        //     y: ys * factor,
-        //     z: zs * factor
-        // }
-        console.log(factor)
-        solid.scale({x:factor,y:factor,z:factor})
-        // console.log('here',solid.layout)
+        return p
+    
+    }else{
 
-        solid.layout.location = {
-            x: 0,
-            y: 0,
-            z: 0
-        }
-
-        // solid.translate({x:0,y:0,z:20})
+        return solid
     }
-
-    if (element.attribs.crop) {
-        var crop = element.attribs.crop
-        var p = crop.split(',')
-        solid.crop = {
-            x: [p[0], p[1]],
-            y: [p[2], p[3]],
-            z: [p[4], p[5]]
-        }
-    }
-
-    return solid
 }
 
 function doCORSRequest(options, cb) {

@@ -12,7 +12,7 @@ title: Welcome
                 Welcome
                 <cylinder></cylinder>
             </row>
-            <scale x='20' y='5'>
+            <scale x='8' y='2'>
                 <cube/>
             </scale>
         </align>

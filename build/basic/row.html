@@ -43,9 +43,11 @@
             </ul>
             <h5 class="aligned left">Structure</h5>
             <ul>
+              <li class="aligned right"><a href="basic/position.html">Position  </a></li>
               <li class="aligned right"><a href="basic/row.html">Row</a></li>
               <li class="aligned right"><a href="basic/column.html">Column</a></li>
               <li class="aligned right"><a href="basic/stack.html">Stack</a></li>
+              <li class="aligned right"><a href="basic/align.html">Align</a></li>
               <li class="aligned right"><a href="basic/resize.html">Resize</a></li>
               <li class="aligned right"><a href="basic/scale.html">Scale</a></li>
               <li class="aligned right"><a href="basic/repeat.html">Repeat</a></li>
@@ -67,24 +69,64 @@
             </ul>
           </aside>
           <div class="blog col span_10_of_12"><p>Arrange elements into a&nbsp;row</p>
-<p>In this example, ten cubes are created and arranged in a row. By default, elements are centered with respect to <code>y</code> and lie flat on the ground plane (<code>z=0</code>).</p>
+<p>There are four cubes of different sizes, all positioned at (0,0,0) and&nbsp;overlapping.</p>
+<div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+&lt;/craft&gt;
+</div></div>
+
+
+<p><code>&lt;row&gt;</code> arranges these five cubes in a row along the&nbsp;x-axis.</p>
 <div class="craftml"><div class="source">
 &lt;craft&gt;
     &lt;row&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube ysize=&quot;20&quot; zsize=&quot;10&quot;&gt;&lt;/cube&gt;
-        &lt;cube ysize=&quot;40&quot; zsize=&quot;20&quot;&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
+        &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
     &lt;/row&gt;
 &lt;/craft&gt;
 </div></div>
 
+<p>The <code>spacing</code> attribute can be used to add empty spaces between the&nbsp;cubes.</p>
+<div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;row spacing=&quot;2&quot;&gt;
+        &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;/row&gt;
+&lt;/craft&gt;
+</div></div>
+
+<p>The <code>spacing</code> attribute can be negative, which will cause the cubes to&nbsp;overlap.</p>
+<div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;row spacing=&quot;-2&quot;&gt;
+        &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;/row&gt;
+&lt;/craft&gt;
+</div></div>
+
+<p>A useful application of negative spacing is to connect objects with curved&nbsp;surfaces.</p>
+<div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;row spacing=&quot;-2&quot;&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+    &lt;/row&gt;
+&lt;/craft&gt;
+</div></div>
           </div>
         </div>
         <div class="fpadding cf"></div>

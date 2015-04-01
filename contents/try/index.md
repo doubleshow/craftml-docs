@@ -5,12 +5,10 @@ title: Try
 
 ```craftml {autoResize:false}
 <craft>
-    <craft name="pin" module="sikuli/craft-pin"/>
     <row>
-        <pin></pin>
-        <pin></pin>
-        <pin></pin>
-        <pin></pin>
+        <cube></cube>
+        <cube zsize="10"></cube>
+        <cube zsize="15"></cube>
     </row>
 </craft>
 ```

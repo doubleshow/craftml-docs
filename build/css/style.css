@@ -13,7 +13,7 @@ Last change:	06/12/14
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700&subset=latin,cyrillic-ext);
 
 .craftml{
-  height: 400px;
+  min-height: 200px;
   margin-bottom: 20px;
 }
 

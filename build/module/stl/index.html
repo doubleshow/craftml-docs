@@ -43,9 +43,11 @@
             </ul>
             <h5 class="aligned left">Structure</h5>
             <ul>
+              <li class="aligned right"><a href="basic/position.html">Position  </a></li>
               <li class="aligned right"><a href="basic/row.html">Row</a></li>
               <li class="aligned right"><a href="basic/column.html">Column</a></li>
               <li class="aligned right"><a href="basic/stack.html">Stack</a></li>
+              <li class="aligned right"><a href="basic/align.html">Align</a></li>
               <li class="aligned right"><a href="basic/resize.html">Resize</a></li>
               <li class="aligned right"><a href="basic/scale.html">Scale</a></li>
               <li class="aligned right"><a href="basic/repeat.html">Repeat</a></li>
@@ -70,10 +72,17 @@
 <div class="craftml"><div class="source">
 &lt;craft&gt;
     &lt;craft name=&quot;chair&quot; stl=&quot;chair.stl&quot;/&gt;
-    &lt;craft name=&quot;pin&quot; stl=&quot;https://raw.githubusercontent.com/sikuli/craftml/master/test/fixtures/pin.stl&quot;/&gt;
+    &lt;craft name=&quot;pin&quot; stl=&quot;pin.stl&quot;/&gt;
     &lt;row&gt;
-        &lt;chair&gt;&lt;/chair&gt;
-        &lt;pin&gt;&lt;/pin&gt;
+        &lt;align y=&quot;50&quot;&gt;
+            &lt;chair&gt;&lt;/chair&gt;
+            &lt;scale z=&quot;0.8&quot;&gt;
+                &lt;pin&gt;&lt;/pin&gt;
+            &lt;/scale&gt;
+            &lt;rotate axis=&quot;z&quot; degrees=&quot;180&quot;&gt;
+                &lt;chair&gt;&lt;/chair&gt;
+            &lt;/rotate&gt;
+        &lt;/align&gt;
     &lt;/row&gt;
 &lt;/craft&gt;
 </div></div>

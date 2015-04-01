@@ -11,7 +11,7 @@ Create empty space between objects
         <cube></cube>
         <space></space>
         <cube></cube>
-        <space xsize="10"></space>
+        <space xsize="20"></space>
         <cube></cube>
     </row>
 </craft>

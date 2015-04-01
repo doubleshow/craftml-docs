@@ -9,8 +9,8 @@ Arrange elements in a vertical stack
 <craft>
     <stack>
         <cube></cube>
-        <cube xsize="10"></cube>
         <cube xsize="20"></cube>
+        <cube xsize="30"></cube>
     </stack>
 </craft>
 ```

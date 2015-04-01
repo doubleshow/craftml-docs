@@ -7,7 +7,11 @@ Sphere
 
 ```craftml
 <craft>
-    <sphere radius="10"></sphere>
+    <row>
+        <sphere></sphere>
+        <sphere></sphere>
+        <sphere></sphere>
+    </row>
 </craft>
 ```
 

@@ -65,24 +65,30 @@ module.exports = React.createClass({
         window.URL.revokeObjectURL(blobURL)
     },
 
-    didRender: function(results) {
-        console.log('didRender',results)
+    didRender: function(result) {
+        console.log('didRender',result)
+        
         var viewer = this.refs.viewer
-        viewer.clear()
+
+        var offset = {x:result.layout.size.x/2,y:result.layout.size.y/2,z:result.layout.size.z/2}
+
+        // viewer.offset = offset
+        // viewer.clear()
+        viewer.initScene(offset)
 
         var colors = ['blue', 'orange', 'yellow', 'green', 'fuchsia', 'red']
-        results.forEach(function(r, index) {
+        result.csgs.forEach(function(r, index) {
             var stlstring = r.stl
             var csg = {
                 color: colors[index % 6],
                 stl: stlstring
             }
 
-            viewer.add(csg)
+            viewer.add(csg, offset)
         })
 
         // var editorHeight = this.refs.editor.getHeight()
-        this.setState({renderCommandText: 'Render'})//, editorHeight: editorHeight})        
+        this.setState({renderCommandText: 'Refresh'})//, editorHeight: editorHeight})        
         // console.log(editorHeight)
     },
 
@@ -107,10 +113,11 @@ module.exports = React.createClass({
 
     render: function() {
 
-        var s1 = {
+        var s1 = {   
+            position: 'absolute',         
             top: 0,
-            left: 0,
-            width: '50%',
+            left: 0,            
+            overflow: 'hidden',            
             height: '100%'
         }
         var s2 = {

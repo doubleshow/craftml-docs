@@ -8,7 +8,7 @@ STL
 ```craftml
 <craft>
     <craft name="chair" stl="chair.stl"/>
-    <craft name="pin" stl="https://raw.githubusercontent.com/sikuli/craftml/master/test/fixtures/pin.stl"/>
+    <craft name="pin" stl="pin.stl"/>
     <row>
         <align y="50">
             <chair></chair>

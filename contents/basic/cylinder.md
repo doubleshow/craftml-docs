@@ -7,6 +7,10 @@ A tall cylinder
 
 ```craftml
 <craft>
-    <cylinder radius="10" height="30"></cylinder>
+    <row>
+        <cylinder></cylinder>
+        <cylinder></cylinder>
+        <cylinder></cylinder>
+    </row>
 </craft>
 ```
