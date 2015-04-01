@@ -354,9 +354,9 @@ module.exports = React.createClass({displayName: "exports",
 
     handleChange: function(){
         if (this.props.onHeightChange && this.props.autoResize){            
-            this.props.onHeightChange(this.getHeight())   
-            this.setState({width:this.getContentWidth()})         
+            this.props.onHeightChange(this.getHeight())            
         }
+        this.setState({width:this.getContentWidth()})
     },
 
     getValue: function() {        
