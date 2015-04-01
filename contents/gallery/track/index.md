@@ -4,7 +4,7 @@ title: Track Movables
 author: qubick
 ---
 
-Puzzle
+Spinner
 
 [https://github.com/qubick/craft-track](https://github.com/qubick/craft-track)
 

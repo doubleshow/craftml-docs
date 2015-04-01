@@ -1,10 +1,10 @@
 ---
 template: index.jade
-title: Puzzle
+title: Hinge
 author: qubick
 ---
 
-Puzzle
+Hinge
 
 [https://github.com/qubick/craft-hinge](https://github.com/qubick/craft-hinge)
 
