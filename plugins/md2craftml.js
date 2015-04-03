@@ -1,5 +1,6 @@
 var _ = require('lodash'),
-    jade = require('jade')
+    jade = require('jade'),
+    marked = require('marked')
 
 module.exports = function(markdown){
     
@@ -25,16 +26,16 @@ module.exports = function(markdown){
             }
 
             var contents = tok.split('\n').slice(1).join('\n')
-            var xml = _.escape('\n' + contents)
-            var tag = jade.render('div.craftml(' + attribs + ')\n\tdiv.source!=p', {p:xml})
+            // var xml = _.escape('\n' + contents)
+            var xml = '<!--\n' + contents + '  -->'
+            var tag = jade.render('div.craftml(' + attribs + ')!=p', {p:xml})
             return tag
 
-        } else{
+        } else {
 
-            return tok
+            return marked(tok)
         }
     }).join('')
-
     console.log(text)
     return text
 }

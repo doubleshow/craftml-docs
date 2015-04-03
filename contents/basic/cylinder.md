@@ -3,14 +3,22 @@ template: index.jade
 title: Cylinder
 ---
 
-A tall cylinder
+Cylinder
+
+```craftml
+<craft>
+    <cylinder></cylinder>
+</craft>
+```
+
+Cylinders with varying heights
 
 ```craftml
 <craft>
     <row>
-        <cylinder></cylinder>
-        <cylinder></cylinder>
-        <cylinder></cylinder>
+        <cylinder height="10"></cylinder>
+        <cylinder height="20"></cylinder>
+        <cylinder height="30"></cylinder>
     </row>
 </craft>
 ```
