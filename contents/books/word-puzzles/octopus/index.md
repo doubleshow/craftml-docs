@@ -12,11 +12,13 @@ Octopus
     <craft name="octopus" stl="octopus.stl"/>
     <scale factor="2">
         <stack>
-            <octopus></octopus>
-            <scale x="1.5" y="1.5">
-                <puzzle side1="+rectangle" side2="-triangle">
-                </puzzle>
-            </scale>
+            <align x="50" y="50">
+                <octopus></octopus>
+                <scale x="1.5" y="1.5">
+                    <puzzle side1="+rectangle" side2="-triangle">
+                    </puzzle>
+                </scale>
+            </align>
         </stack>
     </scale>
 </craft>

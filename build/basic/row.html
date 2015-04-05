@@ -7,13 +7,10 @@
   <meta name="format-detection" content="telephone=no">
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Bonno - Responsive Multipurpose Template - v.1.0-->
-  <script src="js/react/react.js"></script>
-  <script src="js/react/JSXTransformer.js"></script>
   <body>
     <div class="wrapper">
       <!-- HEADER-->
-      <header class="header section">
+      <header class="header">
         <div class="col span_4_of_12"><a href="/" class="logo">CraftML</a></div>
         <nav class="col span_8_of_12 aligned right">
           <ul class="mainmenu">
@@ -35,14 +32,23 @@
               <li class="aligned right"><a href="">Welcome</a></li>
               <li class="aligned right"><a href="">Tutorial</a></li>
             </ul>
-            <h5 class="aligned left">Basic</h5>
+            <h5 class="aligned left">Content</h5>
             <ul>
               <li class="aligned right"><a href="basic/cube.html">Cube</a></li>
               <li class="aligned right"><a href="basic/sphere.html">Sphere</a></li>
               <li class="aligned right"><a href="basic/cylinder.html">Cylinder</a></li>
+              <li class="aligned right"><a href="basic/space.html">Space</a></li>
+              <li class="aligned right"><a href="basic/text.html">Text</a></li>
+              <li class="aligned right"><a href="basic/braille.html">Braille</a></li>
+            </ul>
+            <h5 class="aligned left">Structure</h5>
+            <ul>
+              <li class="aligned right"><a href="basic/position.html">Position  </a></li>
               <li class="aligned right"><a href="basic/row.html">Row</a></li>
               <li class="aligned right"><a href="basic/column.html">Column</a></li>
               <li class="aligned right"><a href="basic/stack.html">Stack</a></li>
+              <li class="aligned right"><a href="basic/align.html">Align</a></li>
+              <li class="aligned right"><a href="basic/resize.html">Resize</a></li>
               <li class="aligned right"><a href="basic/scale.html">Scale</a></li>
               <li class="aligned right"><a href="basic/repeat.html">Repeat</a></li>
             </ul>
@@ -62,22 +68,65 @@
               <li class="aligned right"><a href="script/d3.html">D3  </a></li>
             </ul>
           </aside>
-          <div class="blog col span_10_of_12"><p>Arrange cubes in a&nbsp;row.</p>
+          <div class="blog col span_10_of_12"><p>Arrange elements into a&nbsp;row</p>
+<p>There are four cubes of different sizes, all positioned at (0,0,0) and&nbsp;overlapping.</p>
 <div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+&lt;/craft&gt;
+</div></div>
 
+
+<p><code>&lt;row&gt;</code> arranges these five cubes in a row along the&nbsp;x-axis.</p>
+<div class="craftml"><div class="source">
 &lt;craft&gt;
     &lt;row&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
-        &lt;cube&gt;&lt;/cube&gt;
+        &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
     &lt;/row&gt;
 &lt;/craft&gt;
 </div></div>
 
+<p>The <code>spacing</code> attribute can be used to add empty spaces between the&nbsp;cubes.</p>
+<div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;row spacing=&quot;2&quot;&gt;
+        &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;/row&gt;
+&lt;/craft&gt;
+</div></div>
+
+<p>The <code>spacing</code> attribute can be negative, which will cause the cubes to&nbsp;overlap.</p>
+<div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;row spacing=&quot;-2&quot;&gt;
+        &lt;scale factor=&quot;1&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;3&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;4&quot;&gt;&lt;cube&gt;&lt;/cube&gt;&lt;/scale&gt;
+    &lt;/row&gt;
+&lt;/craft&gt;
+</div></div>
+
+<p>A useful application of negative spacing is to connect objects with curved&nbsp;surfaces.</p>
+<div class="craftml"><div class="source">
+&lt;craft&gt;
+    &lt;row spacing=&quot;-2&quot;&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+        &lt;scale factor=&quot;2&quot;&gt;&lt;sphere&gt;&lt;/sphere&gt;&lt;/scale&gt;
+    &lt;/row&gt;
+&lt;/craft&gt;
+</div></div>
           </div>
         </div>
         <div class="fpadding cf"></div>
@@ -93,15 +142,6 @@
     <!-- /.footer-->
   </body>
   <script src="js/jquery-2.1.0.min.js">   </script>
-  <script src="js/jquery.plugins.js"></script>
-  <script src="js/lodash.min.js">   </script>
-  <script src="js/custom.js"></script>
-  <script src="js/three.min.js"></script>
-  <script src="js/TrackballControls.js"></script>
-  <script src="js/STLLoader.js"></script>
-  <script src="js/stlviewer.js"></script>
-  <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/catiline.js"></script>
-  <script src="react.js" type="text/jsx"></script>
-  <script src="app.js" type="text/jsx"></script>
+  <script src="js/app.bundle.js"></script>
+  <script src="app.js"></script>
 </html>

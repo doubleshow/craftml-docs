@@ -13,7 +13,7 @@ Last change:	06/12/14
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700&subset=latin,cyrillic-ext);
 
 .craftml{
-  height: 400px;
+  min-height: 200px;
   margin-bottom: 20px;
 }
 
@@ -192,7 +192,7 @@ html, body{ height: 100%; }
 
 .auto{ margin: auto !important; float: none; text-align: center; }
 
-.section{ max-width: 1200px; margin: 0 auto 75px; padding: 0 28px;  }
+.section{ max-width: 100%; margin: 0 auto 75px; padding: 5px 28px;  }
 
 .block{ overflow: hidden; }
 
@@ -314,7 +314,7 @@ input,
 [ 5. HEADER ]
 -------------------------------------------------------------------*/
 
-.header{ margin-bottom: 5px; padding: 10px 10px 0; position: relative; z-index: 9; opacity: 1; }
+.header{ margin-bottom: 5px; padding: 0px 10px 0; position: relative; z-index: 9; opacity: 1; }
 
 /* [ 5.2. Logotype ] */
 

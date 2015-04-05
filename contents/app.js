@@ -1,12 +1,11 @@
-$('.craftml').each(function(){
-    var contents = _.unescape($(this).find('.source')[0].innerHTML)
+$('.craftml').each(function(){    
+    // var contents = $(this).find('.source')[0].innerHTML    
+    var s = $(this).html()
+    // unwrap comment to obtain the script conents
+    var m = s.match(/<!--\s*([^]*)\s*-->/)
+    var contents = m ? m[1] : ''
 
-    React.render(<CraftApp contents={contents}/>,
-       this
-    )
+    var useWorker = !($(this).attr('useWorker') == 'false')
+    var autoResize = !($(this).attr('autoResize') == 'false')
+    craft.edit(this, {contents: contents, useWorker: useWorker, autoResize: autoResize})
 })
-
-// http://stackoverflow.com/questions/19327749/javascript-blob-filename-without-link
-var a = document.createElement("a");
-document.body.appendChild(a);
-a.style = 'display: none';

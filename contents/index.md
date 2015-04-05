@@ -6,14 +6,16 @@ title: Welcome
 ```craftml
 <craft>
     <stack>
-        <row spacing="2">
-            <cylinder></cylinder>
-            Welcome
-            <cylinder></cylinder>
-        </row>
-        <scale x='20' y='5'>
-            <cube/>
-        </scale>
+        <align x="50" y="50">
+            <row spacing="2">
+                <cylinder></cylinder>
+                Welcome
+                <cylinder></cylinder>
+            </row>
+            <scale x='8' y='2'>
+                <cube/>
+            </scale>
+        </align>
     </stack>
 </craft>
 ```

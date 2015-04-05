@@ -1,1 +1,0 @@
-var workerScripts = ['js/d3.min.js']

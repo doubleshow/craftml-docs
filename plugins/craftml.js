@@ -71,6 +71,7 @@ parseMarkdownSync = function(content, markdown, baseUrl, options) {
   resolve links by navigating in the content tree. use *baseUrl* as a last resort
   returns html.
    */
+  var s;
   marked.InlineLexer.prototype._resolveLink = function(uri) {
     return resolveLink(content, uri, baseUrl);
   };
@@ -89,7 +90,9 @@ parseMarkdownSync = function(content, markdown, baseUrl, options) {
   };
   options.gfm = false;
   marked.setOptions(options);
-  return marked(md2craftml(markdown));
+  s = md2craftml(markdown);
+  console.log(s);
+  return s;
 };
 
 module.exports = function(env, callback) {

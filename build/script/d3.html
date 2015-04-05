@@ -7,13 +7,10 @@
   <meta name="format-detection" content="telephone=no">
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Bonno - Responsive Multipurpose Template - v.1.0-->
-  <script src="js/react/react.js"></script>
-  <script src="js/react/JSXTransformer.js"></script>
   <body>
     <div class="wrapper">
       <!-- HEADER-->
-      <header class="header section">
+      <header class="header">
         <div class="col span_4_of_12"><a href="/" class="logo">CraftML</a></div>
         <nav class="col span_8_of_12 aligned right">
           <ul class="mainmenu">
@@ -25,7 +22,7 @@
         </nav>
       </header>
       <div class="heading section">     
-        <h2>Craftml</h2>
+        <h2>D3</h2>
       </div>
       <div class="content">
         <div class="section">         
@@ -35,14 +32,23 @@
               <li class="aligned right"><a href="">Welcome</a></li>
               <li class="aligned right"><a href="">Tutorial</a></li>
             </ul>
-            <h5 class="aligned left">Basic</h5>
+            <h5 class="aligned left">Content</h5>
             <ul>
               <li class="aligned right"><a href="basic/cube.html">Cube</a></li>
               <li class="aligned right"><a href="basic/sphere.html">Sphere</a></li>
               <li class="aligned right"><a href="basic/cylinder.html">Cylinder</a></li>
+              <li class="aligned right"><a href="basic/space.html">Space</a></li>
+              <li class="aligned right"><a href="basic/text.html">Text</a></li>
+              <li class="aligned right"><a href="basic/braille.html">Braille</a></li>
+            </ul>
+            <h5 class="aligned left">Structure</h5>
+            <ul>
+              <li class="aligned right"><a href="basic/position.html">Position  </a></li>
               <li class="aligned right"><a href="basic/row.html">Row</a></li>
               <li class="aligned right"><a href="basic/column.html">Column</a></li>
               <li class="aligned right"><a href="basic/stack.html">Stack</a></li>
+              <li class="aligned right"><a href="basic/align.html">Align</a></li>
+              <li class="aligned right"><a href="basic/resize.html">Resize</a></li>
               <li class="aligned right"><a href="basic/scale.html">Scale</a></li>
               <li class="aligned right"><a href="basic/repeat.html">Repeat</a></li>
             </ul>
@@ -62,49 +68,46 @@
               <li class="aligned right"><a href="script/d3.html">D3  </a></li>
             </ul>
           </aside>
-          <div class="blog col span_10_of_12"><div class="craftml"><div class="source">
-
+          <div class="blog col span_10_of_12"><div useWorker="false" class="craftml"><div class="source">
 &lt;craft&gt;
     &lt;script type=&quot;text/craftml&quot;&gt;
+        function main(){
+            var data = [20, 14, 50, 23, 30, 32, 12, 35, 16, 9, 10]
 
-     function main(params) {
+            var width = 40,
+                barHeight = 5
 
-        var data = [20, 14, 50, 23, 30, 32, 12, 35, 16, 9, 10]
+            var x = d3.scale.linear()
+                .range([0, width])
+                .domain([0, d3.max(data, function(d) {
+                    return d
+                })])
 
-        var width = 40,
-            barHeight = 5
+            d3.select(&quot;body&quot;)
+                    .select(&quot;craft&quot;)
+                    .remove()
 
-        // var x = d3.scale.linear()
-        //     .range([0, width])
-        //     .domain([0, d3.max(data, function(d) {
-        //         return d
-        //     })])
+            d3.select(&quot;body&quot;)
+                .append(&#39;craft&#39;)
+                .selectAll(&quot;cube&quot;)
+                .data(data)
+                .enter()
+                .append(&quot;cube&quot;)
+                .attr(&quot;x&quot;, function(d,i){
+                    return i * 6
+                })
+                .attr(&quot;xsize&quot;, barHeight)
+                .attr(&quot;ysize&quot;, function(d) {
 
-        // d3.select(&quot;body&quot;)
-        //         .selectAll(&quot;foo&quot;)
-        //         .remove()
+                    return x(d)
+                })
 
-        // d3.select(&quot;body&quot;)
-        //     .append(&quot;foo&quot;)
-        //     .selectAll(&quot;cube&quot;)
-        //     .data(data)
-        //     .enter()
-        //     .append(&quot;cube&quot;)
-        //     .attr(&quot;x&quot;, function(d,i){
-        //         return i * 6
-        //     })
-        //     .attr(&quot;xsize&quot;, barHeight)
-        //     .attr(&quot;ysize&quot;, function(d) {
-
-        //         return x(d)
-        //     })
-
-        // var xml = d3.select(&quot;foo&quot;).html()
-        // return xml
-        return &#39;&lt;cube/&gt;&#39;
-    }
+            var xml = d3.select(&quot;craft&quot;).html()
+            return xml
+        }
     &lt;/script&gt;
 &lt;/craft&gt;
+
 </div></div>
 
           </div>
@@ -122,15 +125,8 @@
     <!-- /.footer-->
   </body>
   <script src="js/jquery-2.1.0.min.js">   </script>
-  <script src="js/jquery.plugins.js"></script>
-  <script src="js/lodash.min.js">   </script>
-  <script src="js/custom.js"></script>
-  <script src="js/three.min.js"></script>
-  <script src="js/TrackballControls.js"></script>
-  <script src="js/STLLoader.js"></script>
-  <script src="js/stlviewer.js"></script>
-  <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/catiline.js"></script>
-  <script src="react.js" type="text/jsx"></script>
-  <script src="app.js" type="text/jsx"></script>
+  <script src="js/d3.js"></script>
+  <script src="bundle.js"></script>
+  <script src="js/app.bundle.js"></script>
+  <script src="app.js"></script>
 </html>

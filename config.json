@@ -12,10 +12,10 @@
   "require": {
     "moment": "moment",
     "_": "underscore",
-    "typogr": "typogr"
+    "typogr": "typogr"  
   },
   "jade": {
-    "pretty": true
+    "pretty": false
   },
   "markdown": {
     "smartLists": true,

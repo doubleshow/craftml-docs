@@ -59,8 +59,9 @@ parseMarkdownSync = (content, markdown, baseUrl, options) ->
       return code
   options.gfm = false # turn off github markdown to stop auto url
   marked.setOptions options
-  return marked md2craftml markdown
-  # return "hello"
+  s = md2craftml markdown
+  console.log s
+  return s
 
 module.exports = (env, callback) ->
 
