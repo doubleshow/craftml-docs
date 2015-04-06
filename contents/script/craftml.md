@@ -3,9 +3,14 @@ template: index.jade
 title: Craftml
 ---
 
+If `main()` returns a string, this string will be interpreted as CraftML and rendered into 3D objects.
+
+
+Generate a row of three cubes
+
 ```craftml
 <craft>
-    <script type="text/craftml">
+    <script>
         function main(){
             return '<row><cube/><cube/><cube/></row>' 
         }
@@ -14,13 +19,13 @@ title: Craftml
 ```
 
 
-Use a function to generate _n_ cubes.
+Generate _n_ cubes
 
 ```craftml
 <craft>
     <craft name="ncubes">
         <parameter name="n" default="1" type="int"/>
-        <script type="text/craftml">
+        <script>
             function main(params){
                 var xml = ''
                 for (var i = 0; i < params.n; i++){

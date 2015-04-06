@@ -121,7 +121,7 @@ Use `repeat` to generate any number of layers.
             <align x="50" y="50">
                 <row spacing="25">
                     <cube xsize="5" ysize="40" zsize="2"/>
-                    <cube xsize="5" ysize="40" zsize="1"/>
+                    <cube xsize="5" ysize="40" zsize="2"/>
                 </row>
                 <column spacing="25">
                     <cube xsize="40" ysize="5" zsize="2"/>
