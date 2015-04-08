@@ -12,7 +12,7 @@ Pelican
     <craft name="pelican" stl="pelican.stl"/>
     <scale factor="2">
     	<stack>
-			<crop z="10">
+			<crop z="50,0">
          	<pelican></pelican>
 			</crop>
          <scale x="1.5" y="1.5">
