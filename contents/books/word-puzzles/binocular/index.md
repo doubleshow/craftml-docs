@@ -9,11 +9,13 @@ Binocular
 ```craftml
 <craft>
     <craft name="puzzle" module="qubick/craft-puzzle"/>
-    <craft name="word" stl="binocular.stl"/>
+    <craft name="binocular" stl="binocular.stl"/>
     <stack>
+	 	<crop z="10,0">
         <rotate axis="z" degrees="35">
-            <word></word>
+            <binocular></binocular>
         </rotate>
+		 </crop>
         <scale x="1.5" y="1.5">
             <puzzle side1="-rectangle" 
                     side2="+triangle"
