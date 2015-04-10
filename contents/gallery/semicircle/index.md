@@ -12,7 +12,7 @@ Semicircles
 <craft>
     <craft name="circle" module="qubick/craft-semicircle"/>
     <row>
-	 	<circle angle="60" type="chart"></circle>
+	 	<circle angle="60" type="chart" radius="1"></circle>
 	 	<circle angle="110" type="semicircle"></circle>
     </row>
 </craft>```
