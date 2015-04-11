@@ -1,0 +1,6 @@
+each tagNames, group in contents.language['toc.json'].metadata
+  h5.aligned.left= _.capitalize(group)
+  ul
+    each n in tagNames
+      li.aligned.right
+        a(href='language/#{group}/#{n}.html')= n

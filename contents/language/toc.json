@@ -1,0 +1,6 @@
+{
+    "shapes": ["cube","sphere","cylinder"],
+    "contents": ["text","braille","space"],
+    "structure": ["position","row","column","stack","scale","resize","align","lineup","repeat"],
+    "scripting": ["craftml","openjscad","d3"]
+}

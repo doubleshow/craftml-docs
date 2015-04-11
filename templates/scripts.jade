@@ -1,4 +1,7 @@
 script(src='js/jquery-2.1.0.min.js')    
 block morescripts
+if page.metadata.useD3
+    script(src='js/d3.js')
+    script(src='bundle.js')
 script(src='js/app.bundle.js')
 script(src='app.js')

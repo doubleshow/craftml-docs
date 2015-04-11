@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    aside.blogbar.col.span_2_of_12
+        h4 Tutorials        
+        ul
+            each n, key in contents.tutorials
+                if n['index.md']
+                    li.aligned.center
+                        a(href='tutorials/#{key}/')
+                            div                                
+                                img(src='tutorials/#{key}/example.png', width="100%")
+                                div(style="position:relative;top:-40px;background-color:#ffffff; opacity:0.8; font-size:120%;")= key
+
+    .content.blog.col.span_10_of_12   
+        h3= page.metadata.title         
+        != page.html
+      

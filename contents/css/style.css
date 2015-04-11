@@ -192,7 +192,7 @@ html, body{ height: 100%; }
 
 .auto{ margin: auto !important; float: none; text-align: center; }
 
-.section{ max-width: 100%; margin: 0 auto 75px; padding: 5px 28px;  }
+.section{ max-width: 1200px; margin: 0 auto 75px; padding: 5px 28px;  }
 
 .block{ overflow: hidden; }
 
@@ -314,12 +314,13 @@ input,
 [ 5. HEADER ]
 -------------------------------------------------------------------*/
 
-.header{ margin-bottom: 5px; padding: 0px 10px 0; position: relative; z-index: 9; opacity: 1; }
+.header{ margin-bottom: 5px; padding: 0px 10px 0; z-index: 9; opacity: 1; background-color: #cf4646}
+.header .section { margin-bottom:0px; padding:0px;}
 
 /* [ 5.2. Logotype ] */
 
-.logo { font-size: 38px; text-decoration: none; font-weight: 700; line-height: 38px;  color: #1a1a1a; }
-.logo:hover{ color:#e7543d; }
+.logo { font-size: 25px; text-decoration: none; font-weight: 700; line-height: 40px;  color: #e7543d; position:absolute; background-color: #ffffff; padding-left: 10px; padding-right: 10px;}
+.logo:hover{ color:#1e1e1e; }
 
 .logo img { height: 38px; }
 .logo img,
@@ -330,11 +331,11 @@ input,
 
 /* [ 5.3. Mainmenu ] */
 
-.mainmenu > li{ display: inline-block; font-size: 20px; margin-left: 15px; line-height: 52px;  position: relative; }
-.mainmenu > li > a{ color:#1a1a1a; text-decoration: none; }
+.mainmenu > li{ display: inline-block; font-size: 18px; margin-left: 15px; line-height: 40px;  position: relative; }
+.mainmenu > li > a{ color:#ffffff; text-decoration: none; }
 .mainmenu .dropdown > a{ border-bottom: 1px dotted #B9B9B9; cursor: default; }
 .mainmenu > li:hover > a,
-.mainmenu li.active a{ color:#e7543d; border-color: transparent; }
+.mainmenu li.active a{ color:#1e1e1e; border-color: transparent; }
 .mainmenu ul{ position: absolute; left: 1px; top: 52px; background-color: #333333; border-radius: 2px; padding: 8px 34px 9px 17px; text-align: left; visibility: hidden; opacity: 0; display: none; }
 .mainmenu ul.otherwise{ padding: 8px 17px 9px 34px; text-align: right; left: auto; right: 0; }
 .mainmenu ul li{ font-size: 16px; line-height: 30px; white-space: nowrap; }
@@ -656,9 +657,10 @@ form .button{ line-height: 1; }
 .blogbar.fright{ margin-left: 4.5%; margin-right: 0; }
 .blogbar .ava{ margin-bottom: 12px; }
 .blogbar .ava img{ width: 110px; border-radius: 100%; }
-.blogbar h5{ margin-bottom: 6px;}
+.blogbar h5{ margin-bottom: 6px; font-size:110%;}
 .blogbar h5 a{ color:#000; }
-.blogbar li {line-height: 20px;}
+.blogbar ul {list-style-type: none;}
+.blogbar li {line-height: 18px; list-style-type: none;}
 .blogbar h5 a:hover{ color:#e7543d; }
 .blogbar .date{ font-size: 17px; line-height: 32px; color:#999999; margin-bottom: 20px; }
 .blogbar .categories{ color:#999999; line-height: 32px; margin-bottom: 2px; }
