@@ -11,11 +11,11 @@ var worker = cw({
             craft.build(input.code, input.context)
                 .then(function(r) {
                     console.log('worker build done', r)
-
                     var result = r.toStlString()
                     callback(result)
                 })
         } else {
+            console.log('worker doing preview')
             craft
                 .preview(input.code, input.context)
                 .then(function(solids) {                    
@@ -31,7 +31,8 @@ var worker = cw({
                     result.layout = s.layout
                     callback(result)
                 }).catch(function(err) {
-                    callback(err)
+                    console.log('error',err.stack)
+                    callback('')
                 })
         }
     }

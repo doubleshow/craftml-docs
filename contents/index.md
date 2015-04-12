@@ -1,5 +1,5 @@
 ---
-template: index.jade
+template: language.jade
 title: Welcome
 ---
 

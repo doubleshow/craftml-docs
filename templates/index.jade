@@ -2,8 +2,9 @@ extends layout
 
 block content
     aside.blogbar.col.span_2_of_12
-      include sidebar
+        include sidebar
 
-    .blog.col.span_10_of_12      
-      != page.html
+    .content.blog.col.span_10_of_12   
+        h3= page.metadata.title         
+        != page.html
       
